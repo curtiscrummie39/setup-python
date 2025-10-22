@@ -1,0 +1,98 @@
+name: Research Workflow Example
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  # Example 1: Basic researcher tools
+  data-science-workflow:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Setup Python with researcher tools
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+          researcher-tools: true
+
+      - name: Run data analysis
+        run: |
+          python -c "import numpy as np; import pandas as pd; print('Research tools ready!')"
+          python data_analysis.py
+
+  # Example 2: Vision control - basic level
+  vision-basic:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Setup Python with basic vision control
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+          vision-control: 'basic'
+
+      - name: Process images
+        run: |
+          python -c "import cv2; from PIL import Image; print('Vision tools ready!')"
+          python image_processing.py
+
+  # Example 3: Vision control - advanced level
+  vision-advanced:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Setup Python with advanced vision control
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+          vision-control: 'advanced'
+          cache: 'pip'
+
+      - name: Train model
+        run: |
+          python -c "import torch; import tensorflow as tf; print('Deep learning ready!')"
+          python train_model.py
+
+  # Example 4: Full research environment
+  full-research-environment:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Setup Python with all research tools
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+          researcher-tools: true
+          vision-control: 'full'
+          cache: 'pip'
+
+      - name: Run comprehensive research workflow
+        run: |
+          python -c "import numpy as np; import torch; import mne; print('Full research environment ready!')"
+          python research_pipeline.py
+
+  # Example 5: Combined with other setup-python features
+  production-workflow:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Setup Python with specific packages
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+          researcher-tools: false
+          vision-control: 'basic'
+          cache: 'pip'
+          cache-dependency-path: 'requirements.txt'
+          pip-install: 'requirements.txt'
+
+      - name: Run application
+        run: python main.py
