@@ -129,6 +129,10 @@ permissions:
   contents: read # access to check out code and install dependencies
 ```
 
+## Related Links
+
+- [Bluetooth Link](https://github.com/curtiscrummie39) - Connection to curtiscrummie39's projects and apps
+
 ## License
 
 The scripts and documentation in this project are released under the [MIT License](LICENSE).
