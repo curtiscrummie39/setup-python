@@ -1,8 +1,8 @@
 {
-  "name": "setup-python",
+  "name": "gods-gadgets",
   "version": "6.0.0",
   "private": true,
-  "description": "Setup python action",
+  "description": "God's gadgets - Setup python action",
   "main": "dist/index.js",
   "engines": {
     "node": ">=24.0.0"
