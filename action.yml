@@ -33,6 +33,12 @@ inputs:
     description: "Used to specify the version of pip to install with the Python. Supported format: major[.minor][.patch]."
   pip-install:
     description: "Used to specify the packages to install with pip after setting up Python. Can be a requirements file or package names."
+  researcher-tools:
+    description: "When 'true', installs common research packages (numpy, pandas, scipy, matplotlib, jupyter). Default is false."
+    default: false
+  vision-control:
+    description: "Enables advanced vision and brain wave control configuration options for specialized research environments. Accepts 'basic', 'advanced', or 'full'."
+    default: ''
 outputs:
   python-version:
     description: "The installed Python or PyPy version. Useful when given a version range as input."

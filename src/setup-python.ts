@@ -14,6 +14,12 @@ import {
   getVersionsInputFromPlainFile
 } from './utils';
 import {exec} from '@actions/exec';
+import {installResearcherTools} from './researcher-tools';
+import {
+  configureVisionControl,
+  setupVisionEnvironment,
+  type VisionControlLevel
+} from './vision-control';
 
 function isPyPyVersion(versionSpec: string) {
   return versionSpec.startsWith('pypy');
@@ -162,6 +168,21 @@ async function run() {
       const pipInstall = core.getInput('pip-install');
       if (pipInstall) {
         await installPipPackages(pipInstall);
+      }
+
+      // Install researcher tools if requested
+      const researcherTools = core.getBooleanInput('researcher-tools');
+      if (researcherTools) {
+        await installResearcherTools();
+      }
+
+      // Configure vision control if requested
+      const visionControl = core.getInput(
+        'vision-control'
+      ) as VisionControlLevel;
+      if (visionControl) {
+        setupVisionEnvironment(visionControl);
+        await configureVisionControl(visionControl);
       }
     } else {
       core.warning(

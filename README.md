@@ -105,6 +105,42 @@ steps:
 
 See examples of using `cache` and `cache-dependency-path` for `pipenv` and `poetry` in the section: [Caching packages](docs/advanced-usage.md#caching-packages) of the [Advanced usage](docs/advanced-usage.md) guide.
 
+## Research and Vision Control Features
+
+**Researcher Tools**
+
+Automatically install common research and data science packages:
+
+```yaml
+steps:
+- uses: actions/checkout@v5
+- uses: actions/setup-python@v6
+  with:
+    python-version: '3.13'
+    researcher-tools: true
+- run: python my_research_script.py
+```
+
+This installs: numpy, pandas, scipy, matplotlib, jupyter, jupyterlab, scikit-learn, and seaborn.
+
+**Vision and Brain Wave Control**
+
+Configure specialized environments for vision and neural processing:
+
+```yaml
+steps:
+- uses: actions/checkout@v5
+- uses: actions/setup-python@v6
+  with:
+    python-version: '3.13'
+    vision-control: 'full'  # Options: basic, advanced, full
+- run: python vision_processing.py
+```
+
+- `basic`: Installs opencv-python and pillow
+- `advanced`: Adds tensorflow and torch
+- `full`: Complete suite including torchvision, keras, scikit-image, mne, and pyeeg
+
 ## Advanced usage
 
 - [Using the python-version input](docs/advanced-usage.md#using-the-python-version-input)
