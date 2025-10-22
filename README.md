@@ -123,6 +123,8 @@ steps:
 
 This installs: numpy, pandas, scipy, matplotlib, jupyter, jupyterlab, scikit-learn, and seaborn.
 
+> **Note:** Packages are installed using `pip install --upgrade` to ensure the latest versions are used. For production environments, consider specifying exact versions using the `pip-install` input instead.
+
 **Vision and Brain Wave Control**
 
 Configure specialized environments for vision and neural processing:
@@ -140,6 +142,8 @@ steps:
 - `basic`: Installs opencv-python and pillow
 - `advanced`: Adds tensorflow and torch
 - `full`: Complete suite including torchvision, keras, scikit-image, mne, and pyeeg
+
+> **Note:** Vision control packages are installed with the latest versions. Always keep packages updated to ensure security patches are applied. For production use, specify exact versions using the `pip-install` input.
 
 ## Advanced usage
 
