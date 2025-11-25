@@ -1,4 +1,4 @@
-32 channels for a on channel.# God's gadgets
+# God's gadgets
 
 [![Basic validation](https://github.com/actions/setup-python/actions/workflows/basic-validation.yml/badge.svg?branch=main)](https://github.com/actions/setup-python/actions/workflows/basic-validation.yml)
 [![Validate Python e2e](https://github.com/actions/setup-python/actions/workflows/test-python.yml/badge.svg?branch=main)](https://github.com/actions/setup-python/actions/workflows/test-python.yml)
@@ -141,7 +141,7 @@ steps:
 
 - `basic`: Installs opencv-python and pillow
 - `advanced`: Adds tensorflow and torch
-- `full`: Complete suite including torchvision, keras, scikit-image, mne, and pyeeg
+- `full`: Complete suite including torchvision, keras, scikit-image, mne, and pyeeg. Also configures device with minimum 32 channels for EEG processing (sets `MNE_DEVICE_CHANNELS=32` environment variable)
 
 > **Note:** Vision control packages are installed with the latest versions. Always keep packages updated to ensure security patches are applied. For production use, specify exact versions using the `pip-install` input.
 

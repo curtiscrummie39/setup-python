@@ -3,7 +3,8 @@ import * as exec from '@actions/exec';
 import {
   configureVisionControl,
   setupVisionEnvironment,
-  verifyVisionControl
+  verifyVisionControl,
+  MIN_DEVICE_CHANNELS
 } from '../src/vision-control';
 
 jest.mock('@actions/core');
@@ -12,6 +13,12 @@ jest.mock('@actions/exec');
 describe('Vision Control', () => {
   beforeEach(() => {
     jest.clearAllMocks();
+  });
+
+  describe('MIN_DEVICE_CHANNELS', () => {
+    it('should be at least 32 channels', () => {
+      expect(MIN_DEVICE_CHANNELS).toBeGreaterThanOrEqual(32);
+    });
   });
 
   describe('configureVisionControl', () => {
@@ -150,6 +157,10 @@ describe('Vision Control', () => {
       expect(exportVarMock).toHaveBeenCalledWith(
         'PYTORCH_ENABLE_MPS_FALLBACK',
         '1'
+      );
+      expect(exportVarMock).toHaveBeenCalledWith(
+        'MNE_DEVICE_CHANNELS',
+        String(MIN_DEVICE_CHANNELS)
       );
     });
   });
