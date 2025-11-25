@@ -4,6 +4,11 @@ import {exec} from '@actions/exec';
 export type VisionControlLevel = 'basic' | 'advanced' | 'full' | '';
 
 /**
+ * Minimum number of device channels for EEG/brain wave processing
+ */
+export const MIN_DEVICE_CHANNELS = 32;
+
+/**
  * Packages for vision and brain wave control configurations
  */
 const VISION_PACKAGES: Record<Exclude<VisionControlLevel, ''>, string[]> = {
@@ -78,6 +83,11 @@ export function setupVisionEnvironment(level: VisionControlLevel): void {
   if (level === 'full') {
     core.exportVariable('TF_CPP_MIN_LOG_LEVEL', '2');
     core.exportVariable('PYTORCH_ENABLE_MPS_FALLBACK', '1');
+    // Set device channel configuration for EEG/brain wave processing
+    core.exportVariable('MNE_DEVICE_CHANNELS', String(MIN_DEVICE_CHANNELS));
+    core.info(
+      `Device configured with minimum ${MIN_DEVICE_CHANNELS} channels for EEG processing`
+    );
   }
 
   core.info('Vision control environment configured');

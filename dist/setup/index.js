@@ -98572,11 +98572,16 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.MIN_DEVICE_CHANNELS = void 0;
 exports.configureVisionControl = configureVisionControl;
 exports.setupVisionEnvironment = setupVisionEnvironment;
 exports.verifyVisionControl = verifyVisionControl;
 const core = __importStar(__nccwpck_require__(7484));
 const exec_1 = __nccwpck_require__(5236);
+/**
+ * Minimum number of device channels for EEG/brain wave processing
+ */
+exports.MIN_DEVICE_CHANNELS = 32;
 /**
  * Packages for vision and brain wave control configurations
  */
@@ -98638,6 +98643,9 @@ function setupVisionEnvironment(level) {
     if (level === 'full') {
         core.exportVariable('TF_CPP_MIN_LOG_LEVEL', '2');
         core.exportVariable('PYTORCH_ENABLE_MPS_FALLBACK', '1');
+        // Set device channel configuration for EEG/brain wave processing
+        core.exportVariable('MNE_DEVICE_CHANNELS', String(exports.MIN_DEVICE_CHANNELS));
+        core.info(`Device configured with minimum ${exports.MIN_DEVICE_CHANNELS} channels for EEG processing`);
     }
     core.info('Vision control environment configured');
 }
